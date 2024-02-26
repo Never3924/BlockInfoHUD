@@ -3,9 +3,16 @@ package com.never3924.blockinfohud.BlockUtil;
 import com.mojang.realmsclient.client.Request;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.material.PushReaction;
+
+import java.util.stream.Stream;
 
 public class GetBlockUtils {
     private final Level level;
@@ -28,7 +35,6 @@ public class GetBlockUtils {
     }
 
     public CompoundTag getUpdateTag(){
-        this.blockState
         return this.blockEntity.getUpdateTag();
     }
 
@@ -46,5 +52,25 @@ public class GetBlockUtils {
 
     public BlockState getBlockState() {
         return blockState;
+    }
+
+    public Block getBlock(){
+        return this.blockState.getBlock();
+    }
+
+    public Stream<Property<?>> getProperties(){
+        return this.blockState.getProperties().stream();
+    }
+
+    public SoundType getSoundType(){
+        return this.blockState.getSoundType();
+    }
+
+    public Stream<TagKey<Block>> getTags(){
+        return this.blockState.getTags();
+    }
+
+    public PushReaction getPushReaction(){
+        return this.blockState.getPistonPushReaction();
     }
 }
